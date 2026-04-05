@@ -7,7 +7,11 @@ POPD
 IF %_BUILDARCH%==x86 SET Lib=%Lib%\Crt\i386;%DDK_LIB_DEST%\i386;%Lib%
 IF %_BUILDARCH%==AMD64 SET Lib=%Lib%\Crt\amd64;%DDK_LIB_DEST%\amd64;%Lib%
 
-git clone --branch 1.23.2 https://github.com/tronkko/dirent.git
+git clone --branch 1.26 https://github.com/tronkko/dirent.git
+
+CD dirent
+git apply ../dirent-1.24.diff
+CD ..
 
 FOR %%I IN (*.c) DO FOR %%J IN (
 "include .sys/stat.h.	&\n#include <config.h>"
